@@ -15,8 +15,8 @@ import com.datastax.driver.core.Session;
 public class ProductService {
 
 	public Product getProductById(UUID prodId) {
-		StringBuilder sb = new StringBuilder("SELECT * FROM test_faizal.product_catalog WHERE prod_id = '")
-				.append(prodId).append("';");
+		StringBuilder sb = new StringBuilder("SELECT * FROM test_faizal.product_catalog WHERE prod_id = ")
+				.append(prodId);
 
 		final String query = sb.toString();
 
@@ -28,9 +28,9 @@ public class ProductService {
 		List<Product> prods = new ArrayList<Product>();
 
 		for (Row r : rs) {
-			Product p = new Product(r.getUUID("prod_id"), r.getString("created"), r.getString("description"),
-					r.getString("dimensions"), r.getString("location"), r.getString("name"), r.getString("updated"),
-					r.getDouble("weight"));
+			Product p = new Product(r.getUUID("prod_id"), "", r.getString("description"),
+					r.getString("dimensions"), r.getString("location"), r.getString("name"), "",
+					1);
 
 			prods.add(p);
 		}

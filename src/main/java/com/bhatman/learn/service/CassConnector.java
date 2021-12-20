@@ -10,7 +10,8 @@ public class CassConnector {
 	private Session session;
 
 	public void connect(String node, Integer port) {
-		Builder b = Cluster.builder().addContactPoint(node);
+		Builder b = Cluster.builder().withoutJMXReporting().addContactPoint(node);
+		
 		if (port != null) {
 			b.withPort(port);
 		}
